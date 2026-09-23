@@ -1,0 +1,22 @@
+# The Gate 10 simulation and its 3D event viewer.
+#
+#     mamba env create -f environment.yml     (or: conda env create -f ...)
+#     mamba activate pet_gate
+#
+# opengate is on PyPI only -- not conda-forge -- so it comes in through pip.
+# It ships Geant4 with it, so the first install pulls a few hundred MB and the
+# first run downloads the Geant4 data files.  Python is pinned to 3.12 because
+# opengate_core has no macOS-arm64 wheel below 3.11; on 3.11-3.14 it covers
+# linux x86-64/aarch64, macOS (arm64 wheels need macOS 15+) and Windows.
+name: pet_gate
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy
+  - plotly            # the 3D event viewer
+  - pip
+  - pip:
+      - opengate==10.1.1
+      - uproot        # reading Gate's ROOT output
+      - awkward
